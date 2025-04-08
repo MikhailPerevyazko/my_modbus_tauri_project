@@ -1,7 +1,6 @@
 use serde::{Deserialize, Serialize};
 use std::fs;
 
-// Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -9,8 +8,6 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             load_connections_config,
             load_param_configs,
-            json_connection_config,
-            json_param_config
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -66,18 +63,4 @@ fn load_param_configs(path_to_config: &str) -> Vec<FunctionParameter> {
     let configs: ClientModbusConfigs = serde_yaml::from_str(&configuration.as_str()).unwrap();
     let parameters = configs.parameters;
     parameters
-}
-
-#[tauri::command]
-fn json_connection_config() -> Vec<ConnectionModbusConfig> {
-    let path = String::from("/home/Mikhail/projects/modbus_tcp/modbus_config.yaml");
-    let configs = load_connections_config(&path);
-    configs
-}
-
-#[tauri::command]
-fn json_param_config() -> Vec<FunctionParameter> {
-    let path = String::from("/home/Mikhail/projects/modbus_tcp/modbus_config.yaml");
-    let configs = load_param_configs(&path);
-    configs
 }
