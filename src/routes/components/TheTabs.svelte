@@ -4,8 +4,8 @@
   import Tab3 from "./Tab3.svelte";
   // Импортируем компонент с экспортной функцией, создаем переменную.
   import Tab1 from "./Tab1.svelte";
+  
   let modbusView: any;
-
   // Вызов экспорт функции.
   export const update = () => {
     if (modbusView != null) {
@@ -15,7 +15,7 @@
 
 </script>
 
-<div class="container">
+<div>
   <Tabs>
     <TabItem open title=" Tab1">
       <Tab1 bind:this={modbusView} />

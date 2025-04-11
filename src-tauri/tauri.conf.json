@@ -14,8 +14,8 @@
     "windows": [
       {
         "title": "my_modbus_tauri_project",
-        "width": 600,
-        "height": 600,
+        "width": 500,
+        "height": 800,
         "resizable": false
       }
     ],
